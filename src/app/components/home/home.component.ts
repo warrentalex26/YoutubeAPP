@@ -23,7 +23,19 @@ export class HomeComponent implements OnInit {
   verVideo(video: any) {
     this.videoSel = video;
     $('#exampleModalLong').modal();
+  }
 
+  cerrarModal() {
+    this.videoSel = null;
+    $('#exampleModalLong').modal('hide');
+    console.log(this.videoSel);
+  }
+
+  cargarMas() {
+    this.youtubeService.getVideos().subscribe(videoYoutube => {
+      this.videos.push.apply(this.videos, videoYoutube);
+      console.log(this.videos);
+    });
   }
 
   ngOnInit() {

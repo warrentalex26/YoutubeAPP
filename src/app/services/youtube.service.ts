@@ -22,6 +22,10 @@ export class YoutubeService {
     params = params.set('maxResults', '10');
     params = params.set('playlistId', this.playlist);
     params = params.set('key', this.apikey);
+    
+    if (this.nextPage) {
+      params = params.set('pageToken', this.nextPage);
+    }
 
     return this.http.get(url, {params})
       .pipe(map(respuesta => {
